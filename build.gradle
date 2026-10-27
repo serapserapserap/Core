@@ -1,0 +1,32 @@
+plugins {
+    id 'java-library'
+    id 'com.gradleup.shadow' version '8.3.0'
+}
+
+group = 'serap'
+version = 'v1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    implementation 'it.unimi.dsi:fastutil:8.5.19'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'serap.Main'
+    }
+    dependencies {
+        include(dependency('org.projectlombok:lombok:1.18.30'))
+        include(dependency('org.projectlombok:lombok:1.18.30'))
+        include(dependency('it.unimi.dsi:fastutil:8.5.19'))
+    }
+}
